@@ -6,7 +6,6 @@ import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.repository.Note
 class GetNoteUseCase(
     private val repository: NoteRepository
 ) {
-
     suspend operator fun invoke(id: Int): Note? {
         return repository.getNoteById(id)
     }
