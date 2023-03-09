@@ -1,6 +1,5 @@
 package com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.notes
 
-import android.provider.ContactsContract.CommonDataKinds.Note
 import androidx.compose.animation.*
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -19,6 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.notes.components.NoteItem
 import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.notes.components.OrderSection
+import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.util.Screen
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -35,7 +35,7 @@ fun NotesScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-
+                    navController.navigate(Screen.AddEditNoteScreen.route)
                 },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
@@ -80,13 +80,16 @@ fun NotesScreen(
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))
-            LazyColumn(modifier = Modifier.height(16.dp)) {
+
+            LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(state.notes) { note ->
                     NoteItem(note = note,
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
-
+                                navController.navigate(
+                                    Screen.AddEditNoteScreen.route + "?noteId=${note.id}&noteColor=${note.color}"
+                                )
                             },
                         onDeleteClick = {
                             viewModel.onEvent(NotesEvent.DeleteNote(note))
@@ -106,7 +109,4 @@ fun NotesScreen(
             }
         }
     }
-
-
-
 }

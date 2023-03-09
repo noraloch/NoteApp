@@ -14,7 +14,9 @@ import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.add_edit_
 import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.notes.NotesScreen
 import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.util.Screen
 import com.plcoding.cleanarchitecturenoteapp.ui.theme.CleanArchitectureNoteAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
